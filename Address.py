@@ -12,11 +12,12 @@ class Address:
 		self.state	= state
 
 	def __init__(self, addrStr):
-		self.num	= ''
-		self.street	= ''
-		self.type	= ''
-		self.city	= ''
-		self.state	= ''
+		self.addrStr	= addrStr
+		self.num		= ''
+		self.street		= ''
+		self.type		= ''
+		self.city		= ''
+		self.state		= ''
 
 		strTokens = addrStr.split(',')
 		strTokens = [t.strip() for t in strTokens]
@@ -50,6 +51,13 @@ class Address:
 		self.city	= strTokens[1]
 		self.state	= strTokens[2]
 
+	def IsValid(self):
+		if 	len(self.num) 		== 0 or len(self.street) 	== 0 or len(self.type) 		== 0 or len(self.city) 		== 0 or len(self.state) 	== 0:
+			print('Property Address Error: {0}'.format(self.addrStr))
+			return False
+		return True
+
+				
 
 
 	def encodeAddress(self):
