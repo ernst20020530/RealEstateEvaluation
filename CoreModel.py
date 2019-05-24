@@ -13,27 +13,48 @@ class CoreModel:
 		self.total_term = total_term
 
 
-	def dumpcf(self, filename):
+#	def dumpcf(self, filename, cfname = []):
+#
+#		with open(filename, 'w') as f:
+#
+#			fields = list(self.cfdic.keys())
+#			fields = ['month'] + fields[:]
+#			f.write(','.join(fields))
+#			f.write('\n')
+#
+#
+#			allcf = [v for v in self.cfdic.values()]
+#			allcf = np.array(allcf)
+#
+#			for m in range(self.total_term):
+#				tmp = [str(e) for e in allcf[:,m]]
+#				strmonth = ','.join(tmp)
+#				strmonth = '{0},{1}\n'.format(str(m),strmonth)
+#				f.write(strmonth)
+
+	def dumpcf(self, filename, cfname = []):
+
+		fields = list(self.cfdic.keys())
+		if len(cfname) != 0:
+			fields = list(filter(l))
+			
 
 		with open(filename, 'w') as f:
 
 			fields = list(self.cfdic.keys())
+			fields = ['month'] + fields[:]
+			f.write(','.join(fields))
+			f.write('\n')
+
 
 			allcf = [v for v in self.cfdic.values()]
 			allcf = np.array(allcf)
 
-			print(','.join(fields))
-
 			for m in range(self.total_term):
 				tmp = [str(e) for e in allcf[:,m]]
 				strmonth = ','.join(tmp)
-				strmonth = '{0},{1}'.format(str(m),strmonth)
-				print(strmonth)
-
-
-		print(m)
-
-		print([1,2,3])
+				strmonth = '{0},{1}\n'.format(str(m),strmonth)
+				f.write(strmonth)
 
 
 
@@ -60,7 +81,7 @@ class CoreModel:
 
 if __name__=='__main__':
 
-	cm = CoreModel(10)
-	cm.dumpcf()
+	cm = CoreModel(360)
+	cm.dumpcf('cf.csv')
 
 
