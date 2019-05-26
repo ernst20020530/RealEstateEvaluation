@@ -3,7 +3,7 @@
 
 import numpy as np
 from CalcBase import CalcBase
-from MortgageCalc import MortgageCalc
+from CalcMortgage import CalcMortgage
 
 
 class CoreModel:
@@ -14,7 +14,7 @@ class CoreModel:
 		self.cfdic = { name: [0]*(self.total_term+1) for name in CoreModel.cf_names}
 		self.assumption = assumption
 
-		self.calc_list = [MortgageCalc()]
+		self.calc_list = [CalcMortgage()]
 
 	def run(self):
 
