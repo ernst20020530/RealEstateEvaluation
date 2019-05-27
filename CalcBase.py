@@ -20,17 +20,18 @@ class CalcBase:
 
 
 	def _enumrate_inputcf(self):
-		pass
+		return []
 
 
 	def outputcf(self, cfdic):
 		outputcf_name = self._enumrate_outputcf()
 		for n in outputcf_name:
+			print(n)
 			cfdic[n] = self.cfdic[n]
 
 
 	def _enumrate_outputcf(self):
-		pass
+		return []
 
 
 	def calculate(self, assumption):

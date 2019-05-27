@@ -4,6 +4,11 @@
 import numpy as np
 from CalcBase import CalcBase
 from CalcMortgage import CalcMortgage
+from CalcProjectedRent import CalcProjectedRent
+from CalcCPI_monthly import CalcCPI_monthly
+from CalcProjectedHomeValue import CalcProjectedHomeValue
+from CalcProjectedHOA import CalcProjectedHOA
+from CalcProjectInsurance import CalcProjectInsurance
 
 
 class CoreModel:
@@ -11,10 +16,15 @@ class CoreModel:
 	def __init__(self, assumption):
 
 		self.total_term = assumption['total_term']
-		self.cfdic = { name: [0]*(self.total_term+1) for name in CoreModel.cf_names}
+		#self.cfdic = { name: [0]*(self.total_term+1) for name in CoreModel.cf_names}
+		self.cfdic = {}
 		self.assumption = assumption
 
-		self.calc_list = [CalcMortgage()]
+		self.calc_list = [	CalcCPI_monthly(),
+							CalcMortgage(),
+							CalcProjectedRent(),
+							CalcProjectedHomeValue(),
+							CalcProjectedHOA()]
 
 	def run(self):
 
@@ -54,7 +64,7 @@ class CoreModel:
 				'int',
 				'principal',
 				'rent',
-				'effective_rent',
+				'projected_rent',
 				'vacant_ratio',
 				'cpi_bymonth',
 				'home_value',
@@ -85,7 +95,7 @@ if __name__=='__main__':
 
 	cm = CoreModel(assumption)
 	cm.run()
-	cm.dumpcf('cf.csv',['upb','int','principal','pmt'])
+	cm.dumpcf('cf.csv',['projected_HomeValue','CPI_monthly','projected_rent','projected_HOA','projected_Insurance'])
 	#cm.dumpcf('cf.csv')
 
 
