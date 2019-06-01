@@ -6,6 +6,9 @@ from CalcBase import CalcBase
 
 class CalcProjectInsurance(CalcBase):
 
+	def _enumrate_inputcf(self):
+		return ['CPI_monthly']
+
 	def _enumrate_outputcf(self):
 		return ['projected_Insurance']
 

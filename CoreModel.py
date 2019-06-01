@@ -9,6 +9,11 @@ from CalcCPI_monthly import CalcCPI_monthly
 from CalcProjectedHomeValue import CalcProjectedHomeValue
 from CalcProjectedHOA import CalcProjectedHOA
 from CalcProjectInsurance import CalcProjectInsurance
+from CalcProjectedTaxAssessment import CalcProjectedTaxAssessment
+from CalcProjectedTax import CalcProjectedTax
+from CalcProjectedMgtfee import CalcProjectedMgtfee
+from CalcProjectedOccupiedMonth import CalcProjectedOccupiedMonth
+
 
 
 class CoreModel:
@@ -22,9 +27,14 @@ class CoreModel:
 
 		self.calc_list = [	CalcCPI_monthly(),
 							CalcMortgage(),
+							CalcProjectedOccupiedMonth(),
 							CalcProjectedRent(),
 							CalcProjectedHomeValue(),
-							CalcProjectedHOA()]
+							CalcProjectedHOA(),
+							CalcProjectInsurance(),
+							CalcProjectedTaxAssessment(),
+							CalcProjectedTax(),
+							CalcProjectedMgtfee()]
 
 	def run(self):
 
@@ -79,23 +89,26 @@ class CoreModel:
 
 if __name__=='__main__':
 
-	assumption = {	'ap_note_rate'				: 0.05375,
+	assumption = {	'ap_note_rate'				: 0.04375,
 					'total_term'				: 360,
-					'ap_home_price'				: 77900,
+					'ap_home_price'				: 90000,
 					'ap_downpay_ratio' 			: 0.2,
 					'ap_CPI' 					: 0.02,
-					'ap_insurance' 				: -28,
-					'ap_rent' 					: 1100,
-					'ap_home_value' 			: 77125,
-					'ap_hoa' 					: -297,
-					'ap_tax_assessments' 		: 46117,
-					'ap_tax' 					: -994,
+					'ap_insurance' 				: -33,
+					'ap_rent' 					: 1300,
+					'ap_home_value' 			: 92767,
+					'ap_hoa' 					: -387,
+					'ap_tax_assessments' 		: 55830,
+					'ap_tax' 					: -1119,
 					'ap_monthly_mgt_fee_ratio' 	: 0.05,
+					'ap_tenant_searchfee_ratio'	: 0.5,
 					'ap_vacancy_ratio' 			: 0.083333}
 
 	cm = CoreModel(assumption)
 	cm.run()
-	cm.dumpcf('cf.csv',['projected_HomeValue','CPI_monthly','projected_rent','projected_HOA','projected_Insurance'])
+	#cm.dumpcf('cf.csv',['projected_HomeValue','tax_assessment_ratio','projected_tax_assessment','projected_HOA','projected_Insurance','tax_ratio','projected_tax','projected_mgtfee','projected_tenant_searchfee'])
+	#cm.dumpcf('cf.csv',['projected_OccupiedMonth','projected_OccupiedMonth_ratio','projected_tenant_search_month','projected_tenant_search_month_ratio','projected_rent','projected_mgtfee','projected_tenant_searchfee'])
+	cm.dumpcf('cf.csv',['projected_OccupiedMonth_ratio','projected_tenant_search_month_ratio','projected_rent','projected_mgtfee','projected_tenant_searchfee'])
 	#cm.dumpcf('cf.csv')
 
 
