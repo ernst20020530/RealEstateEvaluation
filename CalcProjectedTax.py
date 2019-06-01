@@ -6,6 +6,9 @@ from CalcBase import CalcBase
 
 class CalcProjectedTax(CalcBase):
 
+	def __init__(self, dumpCF = False):
+		super(CalcProjectedTax, self).__init__('CalcProjectedTax', dumpCF)
+
 	def _enumrate_inputcf(self):
 		return ['projected_tax_assessment']
 

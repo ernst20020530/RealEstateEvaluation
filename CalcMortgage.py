@@ -9,8 +9,10 @@ from CalcBase import CalcBase
 
 class CalcMortgage(CalcBase):
 
+	def __init__(self, dumpCF = False):
+		super(CalcMortgage, self).__init__('CalcMortgage', dumpCF)
+
 	def _enumrate_inputcf(self):
-		#return ['upb','note_rate_bymonth','pmt','principal']
 		return []
 
 

@@ -6,6 +6,9 @@ from CalcBase import CalcBase
 
 class CalcProjectedHOA(CalcBase):
 
+	def __init__(self, dumpCF = False):
+		super(CalcProjectedHOA, self).__init__('CalcProjectedHOA', dumpCF)
+
 	def _enumrate_inputcf(self):
 		return ['CPI_monthly']
 

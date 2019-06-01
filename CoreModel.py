@@ -13,6 +13,8 @@ from CalcProjectedTaxAssessment import CalcProjectedTaxAssessment
 from CalcProjectedTax import CalcProjectedTax
 from CalcProjectedMgtfee import CalcProjectedMgtfee
 from CalcProjectedOccupiedMonth import CalcProjectedOccupiedMonth
+from CalcProjectedNetCF import CalcProjectedNetCF
+from CalcIRR import CalcIRR
 
 
 
@@ -34,7 +36,9 @@ class CoreModel:
 							CalcProjectInsurance(),
 							CalcProjectedTaxAssessment(),
 							CalcProjectedTax(),
-							CalcProjectedMgtfee()]
+							CalcProjectedMgtfee(),
+							CalcProjectedNetCF(True),
+							CalcIRR(True)]
 
 	def run(self):
 
@@ -42,6 +46,7 @@ class CoreModel:
 			c.inputcf(self.cfdic, self.assumption)
 			c.calculate(self.assumption)
 			c.outputcf(self.cfdic)
+			c.dump(self.assumption)
 
 
 	def dumpcf(self, filename, cfname = []):
@@ -91,6 +96,7 @@ if __name__=='__main__':
 
 	assumption = {	'ap_note_rate'				: 0.04375,
 					'total_term'				: 360,
+					'ap_init_cost'				: -4000,
 					'ap_home_price'				: 90000,
 					'ap_downpay_ratio' 			: 0.2,
 					'ap_CPI' 					: 0.02,

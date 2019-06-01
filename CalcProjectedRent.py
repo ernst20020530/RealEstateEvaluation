@@ -6,6 +6,9 @@ from CalcBase import CalcBase
 
 class CalcProjectedRent(CalcBase):
 
+	def __init__(self, dumpCF = False):
+		super(CalcProjectedRent, self).__init__('CalcProjectedRent', dumpCF)
+
 	def _enumrate_inputcf(self):
 		return ['CPI_monthly','projected_OccupiedMonth']
 

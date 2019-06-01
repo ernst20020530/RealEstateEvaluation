@@ -7,6 +7,9 @@ import numpy as np
 
 class CalcProjectedMgtfee(CalcBase):
 
+	def __init__(self, dumpCF = False):
+		super(CalcProjectedMgtfee, self).__init__('CalcProjectedMgtfee', dumpCF)
+
 	def _enumrate_inputcf(self):
 		return ['projected_rent','projected_OccupiedMonth_ratio','projected_tenant_search_month_ratio']
 

@@ -1,13 +1,35 @@
 #!/usr/bin/python3
 
 
+import numpy as np
+
 class CalcBase:
 
+	def __init__(self, name, dumpCF):
 
-	def __init__(self):
+		self.cfdic 	= {}
+		self.name	= name
+		self.dumpCF = dumpCF
 
-		self.cfdic = {}
-		
+	def dump(self, assumption):
+		if self.dumpCF == False:
+			return
+
+		fields = self._enumrate_inputcf() + self._enumrate_outputcf()
+		allcf = [self.cfdic[n] for n in fields]
+		allcf = np.array(allcf)
+
+		with open('{0}.csv'.format(self.name), 'w') as f:
+			fields = ['month'] + fields[:]
+			f.write(','.join(fields))
+			f.write('\n')
+			
+			for m in range(assumption['total_term'] + 1):
+				tmp = [str(e) for e in allcf[:,m]]
+				strmonth = ','.join(tmp)
+				strmonth = '{0},{1}\n'.format(str(m),strmonth)
+				f.write(strmonth)
+
 
 	def inputcf(self, cfdic, assumption):
 		inputcf_name = self._enumrate_inputcf()

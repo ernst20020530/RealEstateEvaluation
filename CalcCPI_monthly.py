@@ -6,6 +6,10 @@ from CalcBase import CalcBase
 
 class CalcCPI_monthly(CalcBase):
 
+	def __init__(self, dumpCF = False):
+		super(CalcCPI_monthly, self).__init__('CalcCPI_monthly', dumpCF)
+
+
 	def _enumrate_outputcf(self):
 		return ['CPI_monthly']
 

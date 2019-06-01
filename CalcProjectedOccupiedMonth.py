@@ -6,6 +6,9 @@ import numpy as np
 
 class CalcProjectedOccupiedMonth(CalcBase):
 
+	def __init__(self, dumpCF = False):
+		super(CalcProjectedOccupiedMonth, self).__init__('CalcProjectedOccupiedMonth', dumpCF)
+
 	def _enumrate_outputcf(self):
 		return ['projected_OccupiedMonth',
 				'projected_tenant_search_month',
