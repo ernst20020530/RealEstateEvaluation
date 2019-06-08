@@ -56,7 +56,7 @@ class CalcIRR(CalcBase):
 		irr_monthly = np.array([np.irr(irr_cf[m]) for m in range(term_max)])
 		irr = np.multiply(12,irr_monthly)
 
-		m = 180
+		m = 60
 		self.cfdic['pay_off'] 				= pay_off[m,:].tolist()
 		self.cfdic['sales_price'] 			= sales_price[m,:].tolist()
 		self.cfdic['down_pay'] 				= down_pay[m,:].tolist()

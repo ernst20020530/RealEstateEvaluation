@@ -48,7 +48,6 @@ class CalcBase:
 	def outputcf(self, cfdic):
 		outputcf_name = self._enumrate_outputcf()
 		for n in outputcf_name:
-			print(n)
 			cfdic[n] = self.cfdic[n]
 
 
